@@ -35,7 +35,6 @@ PKGS=(
 'bluedevil'
 'bluez'
 'breeze'
-'celluloid' # video players
 'cups' #Common Unix Printing System
 'curl'
 'dialog'
@@ -55,10 +54,10 @@ PKGS=(
 'lzop'
 'm4'
 'make'
+'xorg-x11-font-utils'
 'nano'
 'neofetch'
 'ntfs-3g'
-'ntp'
 'okular'
 'os-prober'
 'p7zip'
@@ -66,11 +65,10 @@ PKGS=(
 'pkgconf' 
 'python3-pip'
 'qemu-kvm'
-'libvirt-clients' #Dependecy for quemu
 'bridge-utils' #Dependecy for quemu
 'rsync'
 'flatpak'
-'traceroute'
+'ttfmkfdir'
 'ufw'
 'unrar'
 'unzip'
@@ -79,7 +77,6 @@ PKGS=(
 'wget'
 'zip'
 'g++'
-'libx11-dev'
 'rpm-build'
 )
 
@@ -91,8 +88,7 @@ systemctl enable cups
 systemctl start cups
 sudo systemctl start libvirtd
 sudo systemctl enable libvirtd
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-sudo dnf remove firefox-esr
+sudo dnf remove firefox
 #Fonts
 #Requirements
 sudo rpm -i http://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/xorg-x11-fonts-Type1-7.5-33.el9.noarch.rpm
@@ -104,7 +100,7 @@ unzip FiraCode.zip -d "/home/$username/.fonts"
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d "/home/$username/.fonts"
 mv dotfonts/fontawesome/otfs/*.otf "/home/$username/.fonts/"
-chown "$username:$username" "/home/$username/.fonts/*"
+
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
 sudo dnf install -y google-noto-emoji-fonts
@@ -138,6 +134,7 @@ sudo chmod +x ./Install.sh
 
 #Automatic updates
 sudo dnf install -y dnf-automatic
+sudo dnf install rocky-indexhtml
 
 #Drivers
 wget https://repo.radeon.com/amdgpu-install/22.40.3/rhel/9.1/amdgpu-install-5.4.50403-1.el9.noarch.rpm
@@ -150,19 +147,46 @@ sudo dnf install  edk2-ovmf -y
  sudo systemctl start libvirtd*
  sudo systemctl enable libvirtd
 
-Flatpaks=(
-'Flathub com.github.tchx84.Flatseal' #Flatpak addon
-'flathub com.brave.Browser' #BraveBrowser
-'flathub com.spotify.Client'
-'flathub com.discordapp.Discord'
-'flathub io.github.shiftey.Desktop'
-'flathub com.makemkv.MakeMKV'
-'flathub org.libreoffice.LibreOffice' #Newer version than in repo
-'flathub org.mozilla.Thunderbird' #Email client
-'org.inkscape.Inkscape' #Vector Graphics Editor
-'flathub com.vscodium.codium' #Free/Libre Open Source Software Binaries of VS Code
-)
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-for PKG in "${Flatpaks[@]}"; do
-    echo "INSTALLING: ${PKG}"
-    flatpak install -y "$Flatpaks"
+#Flatpaks
+#Flatseal addon
+flatpak install -y flathub com.github.tchx84.Flatseal
+#Spotify
+flatpak install -y flathub com.spotify.Client
+#Dolphin Emu
+flatpak install -y flathub org.DolphinEmu.dolphin-emu
+cd "/home/$username"
+wget https://downloads.romspedia.com/roms/Legend%20of%20Zelda%2C%20The%20-%20The%20Wind%20Waker%20%28USA%29.7z
+wget https://www.mediafire.com/file/uijj3i3349h8j2j/gba_bios.zip/file
+
+#RPCS3 Emu
+flatpak install -y flathub net.rpcs3.RPCS3
+cd "$builddir" || exit
+wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
+
+#MineCraft
+flatpak install -y flathub com.mojang.Minecraft
+#Bedrock Edition
+flatpak install -y flathub io.mrarm.mcpelauncher
+
+#Discord
+flatpak install -y flathub com.discordapp.Discord
+
+#Wallpaper downloader
+flatpak install -y flathub es.estoes.wallpaperDownloader
+
+#Bible applications
+flatpak install -y flathub org.xiphos.Xiphos
+
+#Github Desktop 
+flatpak install -y flathub io.github.shiftey.Desktop
+
+#MakeMkv
+flatpak install -y flathub com.makemkv.MakeMKV
+
+#Thunderbird Mailclient
+flatpak install -y flathub org.mozilla.Thunderbird
+
+#Chatterino
+flatpak install -y chatterino
