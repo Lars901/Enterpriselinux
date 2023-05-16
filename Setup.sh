@@ -21,7 +21,6 @@ sudo mkdir -p /usr/share/sddm/themes
 cd $builddir
 #cd /Wallpapers
 #cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers/
-chown -R "$username:$username" "/home/$username"
 
 PKGS=(
 'alsa-utils' # audio utils
@@ -54,7 +53,6 @@ PKGS=(
 'lzop'
 'm4'
 'make'
-'xorg-x11-font-utils'
 'nano'
 'neofetch'
 'ntfs-3g'
@@ -91,6 +89,7 @@ sudo systemctl enable libvirtd
 sudo dnf remove firefox
 #Fonts
 #Requirements
+sudo rpm -i https://dl.rockylinux.org/pub/rocky/9/devel/x86_64/os/Packages/x/xorg-x11-font-utils-7.5-53.el9.x86_64.rpm
 sudo rpm -i http://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/xorg-x11-fonts-Type1-7.5-33.el9.noarch.rpm
 sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 sudo dnf makecache
