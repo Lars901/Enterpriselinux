@@ -147,7 +147,6 @@ sudo dnf install  edk2-ovmf -y
  sudo systemctl enable libvirtd
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 #Flatpaks
 #Flatseal addon
 flatpak install -y flathub com.github.tchx84.Flatseal
@@ -168,24 +167,19 @@ wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe3
 flatpak install -y flathub com.mojang.Minecraft
 #Bedrock Edition
 flatpak install -y flathub io.mrarm.mcpelauncher
-
 #Discord
 flatpak install -y flathub com.discordapp.Discord
-
 #Wallpaper downloader
 flatpak install -y flathub es.estoes.wallpaperDownloader
-
 #Bible applications
 flatpak install -y flathub org.xiphos.Xiphos
-
 #Github Desktop 
 flatpak install -y flathub io.github.shiftey.Desktop
-
 #MakeMkv
 flatpak install -y flathub com.makemkv.MakeMKV
-
 #Thunderbird Mailclient
 flatpak install -y flathub org.mozilla.Thunderbird
-
 #Chatterino
 flatpak install -y chatterino
+#VSCodium
+flatpak install -y flathub com.vscodium.codium
