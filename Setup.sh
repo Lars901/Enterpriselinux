@@ -112,7 +112,7 @@ PKGS=(
 
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
-    sudo dnf install - y "$PKG"
+    sudo dnf install "$PKG"
 done
 systemctl enable cups
 systemctl start cups
@@ -172,8 +172,8 @@ wget https://repo.radeon.com/amdgpu-install/22.40.3/rhel/9.1/amdgpu-install-5.4.
 
 #Qemu
 sudo dnf makecache --refresh
-sudo dnf install -y edk2-ovmf
- sudo dnf install -y qemu-kvm qemu-img libvirt virt-manager virt-install virt-viewer libvirt-client
+sudo dnf install  edk2-ovmf -y
+ sudo dnf install qemu-kvm qemu-img libvirt virt-manager virt-install virt-viewer libvirt-client -y
  sudo systemctl start libvirtd*
  sudo systemctl enable libvirtd
 
@@ -192,7 +192,7 @@ Flatpaks=(
 
 for PKG in "${Flatpaks[@]}"; do
     echo "INSTALLING: ${PKG}"
-    flatpak install -y "$PKG"#Flatpaks
+    flatpak install -y "$Flatpaks"
 sudo dnf groupinstall -y “KDE Plasma Workspaces”
 sudo dnf --enablerepo=epel group -y install “KDE Plasma Workspaces” “base-x”
 sudo systemctl set-default graphical
