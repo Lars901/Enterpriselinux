@@ -92,7 +92,7 @@ systemctl start cups
 sudo systemctl start libvirtd
 sudo systemctl enable libvirtd
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
+sudo dnf remove firefox-esr
 #Fonts
 #Requirements
 sudo rpm -i http://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/xorg-x11-fonts-Type1-7.5-33.el9.noarch.rpm
