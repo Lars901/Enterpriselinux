@@ -8,8 +8,7 @@ sudo dnf config-manager --set-enabled crb
 sudo dnf install -y epel-release
 sudo dnf install -y --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-9.noarch.rpm
 sudo dnf install -y --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
-sudo dnf config-manager --enable powertools
-sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+#sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video
 
 # Making .config and Moving config files and background to Pictures/Wallpapers
@@ -18,7 +17,7 @@ mkdir -p "/home/$username/.config"
 mkdir -p "/home/$username/.fonts"
 mkdir -p "/home/$username/Pictures"
 mkdir -p "/home/$username/Wallpapers"
-mkdir -p /usr/share/sddm/themes
+sudo mkdir -p /usr/share/sddm/themes
 cd $builddir
 #cd /Wallpapers
 #cp -R *.jpg /$HOME/$USER/Pictures/Wallpapers/
@@ -28,7 +27,6 @@ PKGS=(
 'alsa-utils' # audio utils
 'ark' # compression
 'bash-completion'
-'kio-audiocd' 
 'autoconf' # build
 'automake' # build
 'bash-completion'
@@ -42,57 +40,36 @@ PKGS=(
 'curl'
 'dialog'
 'dosfstools'
-'flatpak'
-'fonts-terminus'
 'flex'
 'fuse3'
-'fuseiso'
 'gcc'
 'git-core'
 'gdisk'
 'haveged'
 'htop'
 'nftables'
-'openjdk-17-jdk' # Java 17
-'openjdk-17-jre' #Java 17 jre
-'qt5-style-kvantum'
-'libavcodec-extra' # Extra codecs
-'libdvdread ' #Enable dvd playback
-'libnewt-dev'
 'libtool'
-'libdvd-pkg'  #Enable dvd playback
 'libcupsimage2' #Canon Printer driver requirement
 'lsof'
 'lutris'
 'lzop'
 'm4'
 'make'
-'milou'
 'nano'
 'neofetch'
 'ntfs-3g'
 'ntp'
 'okular'
-'netcat-openbsd'
 'os-prober'
 'p7zip'
 'patch'
 'pkgconf' 
-'print-manager'
 'python3-pip'
 'qemu-kvm'
 'libvirt-clients' #Dependecy for quemu
-'libvirt-daemon-system' #Dependecy for quemu
 'bridge-utils' #Dependecy for quemu
-'virtinst' #Dependecy for virt-manager
-'libvirt-daemon' #Dependecy for virt-manager
-'virt-manager'
-'virt-viewer'
 'rsync'
-'systemsettings'
-'fonts-terminus'
 'flatpak'
-'flameshot'
 'traceroute'
 'ufw'
 'unrar'
@@ -100,14 +77,10 @@ PKGS=(
 'usbutils'
 'vulkan-tools'
 'wget'
-'kde-zeroconf'
 'zip'
 'g++'
 'libx11-dev'
-'libvirglrenderer1'
-'virgl-server'
 'rpm-build'
-
 )
 
 for PKG in "${PKGS[@]}"; do
@@ -193,7 +166,3 @@ Flatpaks=(
 for PKG in "${Flatpaks[@]}"; do
     echo "INSTALLING: ${PKG}"
     flatpak install -y "$Flatpaks"
-sudo dnf groupinstall -y “KDE Plasma Workspaces”
-sudo dnf --enablerepo=epel group -y install “KDE Plasma Workspaces” “base-x”
-sudo systemctl set-default graphical
-sudo reboot -f
