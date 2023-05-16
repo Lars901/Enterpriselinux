@@ -66,7 +66,7 @@ PKGS=(
 'bridge-utils' #Dependecy for quemu
 'rsync'
 'flatpak'
-'ttfmkfdir'
+'ttmkfdir'
 'ufw'
 'unrar'
 'unzip'
