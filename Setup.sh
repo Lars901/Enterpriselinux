@@ -64,8 +64,6 @@ PKGS=(
 'patch'
 'pkgconf' 
 'python3-pip'
-'qemu-kvm'
-'bridge-utils' #Dependecy for quemu
 'rsync'
 'flatpak'
 'ttmkfdir'
@@ -151,12 +149,12 @@ sudo dnf install rocky-indexhtml
 wget https://repo.radeon.com/amdgpu-install/22.40.3/rhel/9.1/amdgpu-install-5.4.50403-1.el9.noarch.rpm
 #sudo dnf install -y --accept-eula ./amdgpu-install-5.4.50403-1.el9.noarch.rpm --opencl=rocr,legacy --vulkan=amdvlk,pro
 
+
 #Qemu
-sudo dnf makecache --refresh
-sudo dnf install  edk2-ovmf -y
- sudo dnf install qemu-kvm qemu-img libvirt virt-manager virt-install virt-viewer libvirt-client -y
- sudo systemctl start libvirtd*
- sudo systemctl enable libvirtd
+sudo dnf install @virt
+sudo dnf -y install libvirt-devel virt-top libguestfs-tools
+sudo systemctl enable --now libvirtd
+sudo dnf -y install virt-manager
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Flatpaks
