@@ -42,6 +42,8 @@ PKGS=(
 'fuse3'
 'gcc'
 'git-core'
+'gnome-tweaks'
+'gnome-shellextension-desktop-icons'
 'gdisk'
 'haveged'
 'htop'
@@ -67,6 +69,7 @@ PKGS=(
 'rsync'
 'flatpak'
 'ttmkfdir'
+'jq'
 'ufw'
 'unrar'
 'unzip'
@@ -99,7 +102,7 @@ unzip FiraCode.zip -d "/home/$username/.fonts"
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d "/home/$username/.fonts"
 mv dotfonts/fontawesome/otfs/*.otf "/home/$username/.fonts/"
-
+git clone https://github.com/SpudGunMan/segoe-ui-linux
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
 sudo dnf install -y google-noto-emoji-fonts
@@ -131,6 +134,15 @@ cd /mybash
 sudo chmod +x ./Install.sh
 ./Install.sh
 
+#Win11 Icons
+cd "$builddir" || exit
+git clone https://github.com/yeyushengfan258/Win11-icon-theme.git
+#GTK Theme
+cd "$builddir" || exit
+git clone https://github.com/vinceliuice/Fluent-gtk-theme.git
+#Wallpapers 
+wget https://4kwallpapers.com/images/wallpapers/windows-11-blue-stock-white-background-light-official-3840x2400-5616.jpg
+wget https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-blue-stock-official-3840x2400-5630.jpg
 #Automatic updates
 sudo dnf install -y dnf-automatic
 sudo dnf install rocky-indexhtml
@@ -183,3 +195,5 @@ flatpak install -y flathub org.mozilla.Thunderbird
 flatpak install -y chatterino
 #VSCodium
 flatpak install -y flathub com.vscodium.codium
+#LibreOffice
+flatpak install -y flathub org.libreoffice.LibreOffice
