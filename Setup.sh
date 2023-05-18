@@ -67,6 +67,7 @@ PKGS=(
 'rsync'
 'flatpak'
 'ttmkfdir'
+'thunar'
 'jq'
 'ufw'
 'unrar'
@@ -89,6 +90,7 @@ sudo systemctl start libvirtd
 sudo systemctl enable libvirtd
 sudo dnf remove firefox
 sudo dnf remove neovim
+sudo dnf remove gnome-terminal
 #Fonts
 #Requirements
 sudo rpm -i https://dl.rockylinux.org/pub/rocky/9/devel/x86_64/os/Packages/x/xorg-x11-font-utils-7.5-53.el9.x86_64.rpm
@@ -165,6 +167,10 @@ sudo usermod -aG libvirt-qemu $USER
 sudo usermod -aG kvm $USER
 sudo usermod -aG input $USER
 sudo usermod -aG disk $USER
+
+#Google Chrome for installing Gnome Extensions
+cd "$builddir" || exit
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Flatpaks
