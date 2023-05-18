@@ -33,17 +33,17 @@ PKGS=(
 'bison'
 'bluedevil'
 'bluez'
-'breeze'
 'cups' #Common Unix Printing System
 'curl'
 'dialog'
 'dosfstools'
 'flex'
 'fuse3'
+'konsole'
 'gcc'
 'git-core'
 'gnome-tweaks'
-'gnome-shellextension-desktop-icons'
+#'gnome-shellextension-desktop-icons'
 'gdisk'
 'haveged'
 'htop'
@@ -88,6 +88,7 @@ systemctl start cups
 sudo systemctl start libvirtd
 sudo systemctl enable libvirtd
 sudo dnf remove firefox
+sudo dnf remove neovim
 #Fonts
 #Requirements
 sudo rpm -i https://dl.rockylinux.org/pub/rocky/9/devel/x86_64/os/Packages/x/xorg-x11-font-utils-7.5-53.el9.x86_64.rpm
@@ -155,6 +156,11 @@ sudo dnf install @virt
 sudo dnf -y install libvirt-devel virt-top libguestfs-tools
 sudo systemctl enable --now libvirtd
 sudo dnf -y install virt-manager
+sudo usermod -aG libvirt $USER
+sudo usermod -aG libvirt-qemu $USER
+sudo usermod -aG kvm $USER
+sudo usermod -aG input $USER
+sudo usermod -aG disk $USER
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Flatpaks
@@ -173,6 +179,8 @@ flatpak install -y flathub net.rpcs3.RPCS3
 cd "$builddir" || exit
 wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
 
+#Brave Browser
+flatpak install -y flathub com.brave.Browser
 #MineCraft
 flatpak install -y flathub com.mojang.Minecraft
 #Bedrock Edition
