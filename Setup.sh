@@ -142,6 +142,10 @@ git clone https://github.com/vinceliuice/Fluent-gtk-theme.git
 #Wallpapers 
 wget https://4kwallpapers.com/images/wallpapers/windows-11-blue-stock-white-background-light-official-3840x2400-5616.jpg
 wget https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-blue-stock-official-3840x2400-5630.jpg
+
+#Dash to panel
+cd "$builddir" || exit
+git clone https://github.com/home-sweet-gnome/dash-to-panel.git
 #Automatic updates
 sudo dnf install -y dnf-automatic
 sudo dnf install rocky-indexhtml
@@ -203,3 +207,6 @@ flatpak install -y chatterino
 flatpak install -y flathub com.vscodium.codium
 #LibreOffice
 flatpak install -y flathub org.libreoffice.LibreOffice
+#Gnome Extensions
+flatpak install -y flathub org.gnome.Extensions
+flatpak install -y flathub com.mattjakeman.ExtensionManager
