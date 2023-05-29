@@ -42,7 +42,6 @@ PKGS=(
 'konsole'
 'gcc'
 'git-core'
-'gnome-tweaks'
 'gdisk'
 'haveged'
 'htop'
@@ -81,7 +80,7 @@ PKGS=(
 
 for PKG in "${PKGS[@]}"; do
     echo "INSTALLING: ${PKG}"
-    sudo dnf install "$PKG"
+    sudo dnf install "$PKG" -y
 done
 systemctl enable cups
 systemctl start cups
@@ -153,6 +152,7 @@ git clone https://github.com/home-sweet-gnome/dash-to-panel.git
 #Automatic updates
 sudo dnf install -y dnf-automatic
 sudo dnf install rocky-indexhtml
+sudo dnf install almalinux-indexhtml
 
 #Drivers
 wget https://repo.radeon.com/amdgpu-install/22.40.3/rhel/9.1/amdgpu-install-5.4.50403-1.el9.noarch.rpm
@@ -192,19 +192,17 @@ cd "$builddir" || exit
 wget http://dus01.ps3.update.playstation.net/update/ps3/image/us/2023_0228_05fe32f5dc8c78acbcd84d36ee7fdc5b/PS3UPDAT.PUP
 
 #Brave Browser
-flatpak install -y flathub com.brave.Browser
+#flatpak install -y flathub com.brave.Browser
 #MineCraft
 flatpak install -y flathub com.mojang.Minecraft
 #Bedrock Edition
 flatpak install -y flathub io.mrarm.mcpelauncher
 #Discord
-flatpak install -y flathub com.discordapp.Discord
+#flatpak install -y flathub com.discordapp.Discord
 #Wallpaper downloader
 flatpak install -y flathub es.estoes.wallpaperDownloader
 #Bible applications
 flatpak install -y flathub org.xiphos.Xiphos
-#Github Desktop 
-flatpak install -y flathub io.github.shiftey.Desktop
 #MakeMkv
 flatpak install -y flathub com.makemkv.MakeMKV
 #Thunderbird Mailclient
@@ -214,7 +212,17 @@ flatpak install -y chatterino
 #VSCodium
 flatpak install -y flathub com.vscodium.codium
 #LibreOffice
-flatpak install -y flathub org.libreoffice.LibreOffice
+#flatpak install -y flathub org.libreoffice.LibreOffice
 #Gnome Extensions
 flatpak install -y flathub org.gnome.Extensions
-flatpak install -y flathub com.mattjakeman.ExtensionManager
+#flatpak install -y flathub com.mattjakeman.ExtensionManager
+sudo dnf install gnome-shell-extension-user-theme gnome-themes-extra
+
+#Nix Setup
+curl -L https://nixos.org/nix/install | sh
+#Packages from Nix
+nix-env -iA nixpkgs.libreoffice-fresh
+nix-env -iA nixpkgs.brave
+nix-env -iA nixpkgs.celluloid
+nix-env -iA nixpkgs.discord
+nix-env -iA nixpkgs.github-desktop
