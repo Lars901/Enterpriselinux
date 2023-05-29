@@ -43,7 +43,6 @@ PKGS=(
 'gcc'
 'git-core'
 'gnome-tweaks'
-#'gnome-shellextension-desktop-icons'
 'gdisk'
 'haveged'
 'htop'
@@ -91,6 +90,7 @@ sudo systemctl enable libvirtd
 sudo dnf remove firefox
 sudo dnf remove neovim
 sudo dnf remove gnome-terminal
+
 #Fonts
 #Requirements
 sudo rpm -i https://dl.rockylinux.org/pub/rocky/9/devel/x86_64/os/Packages/x/xorg-x11-font-utils-7.5-53.el9.x86_64.rpm
@@ -141,6 +141,8 @@ git clone https://github.com/yeyushengfan258/Win11-icon-theme.git
 #GTK Theme
 cd "$builddir" || exit
 git clone https://github.com/vinceliuice/Fluent-gtk-theme.git
+#Gnome-shell-extension-desktop-icons
+sudo rpm -i https://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/Packages/gnome-shell-extension-desktop-icons-40.7-2.el9.noarch.rpm
 #Wallpapers 
 wget https://4kwallpapers.com/images/wallpapers/windows-11-blue-stock-white-background-light-official-3840x2400-5616.jpg
 wget https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-blue-stock-official-3840x2400-5630.jpg
